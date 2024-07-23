@@ -16,9 +16,9 @@ services:
     environment:
       - ADMIN_PASSWORD={$admin_password}
     volumes:
-      - /portainer/Files/AppData/Config/chibisafe/database:/app/database:rw
-      - /portainer/Files/AppData/Config/chibisafe/uploads:/app/uploads:rw
-      - /portainer/Files/AppData/Config/chibisafe/logs:/app/logs:rw
+      - /portainer/Files/AppData/Config/chibisafe-01/database:/app/database:rw
+      - /portainer/Files/AppData/Config/chibisafe-01/uploads:/app/uploads:rw
+      - /portainer/Files/AppData/Config/chibisafe-01/logs:/app/logs:rw
     expose:
       - "8000"
     labels:
@@ -28,8 +28,8 @@ services:
   chibisafe_caddy:
     image: caddy:2-alpine
     volumes:
-      - /portainer/Files/AppData/Config/chibisafe/Caddyfile:/etc/caddy/Caddyfile:ro
-      - /portainer/Files/AppData/Config/chibisafe/Caddyfile/uploads:/app/uploads:ro
+      - /portainer/Files/AppData/Config/chibisafe-01/Caddyfile:/etc/caddy/Caddyfile:ro
+      - /portainer/Files/AppData/Config/chibisafe-01/Caddyfile/uploads:/app/uploads:ro
     ports:
       - 24424:80
     labels:
