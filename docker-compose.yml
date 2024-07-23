@@ -3,6 +3,9 @@ version: "3.7"
 services:
   chibisafe:
     image: chibisafe/chibisafe:latest
+	deploy:
+      labels:
+        monocker.enable: 'true'
     environment:
       - BASE_API_URL=http://chibisafe_server:8000
     expose:
@@ -11,6 +14,9 @@ services:
 
   chibisafe_server:
     image: chibisafe/chibisafe-server:latest
+	deploy:
+      labels:
+        monocker.enable: 'true'	
     environment:
       - ADMIN_PASSWORD={$admin_password}
     volumes:
@@ -21,8 +27,11 @@ services:
       - 8000
     restart: unless-stopped
 
-  caddy:
+  chibisafe_caddy:
     image: caddy:2-alpine
+	deploy:
+      labels:
+        monocker.enable: 'true'
     volumes:
       - /portainer/Files/AppData/Config/chibisafe/Caddyfile:/etc/caddy/Caddyfile:ro
       - /portainer/Files/AppData/Config/chibisafe/Caddyfile/uploads:/app/uploads:ro
