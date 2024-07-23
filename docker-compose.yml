@@ -6,9 +6,9 @@ services:
     environment:
       - BASE_API_URL=http://chibisafe_server:8000
     expose:
-      - 8001
-  	labels:
-	  - monocker.enable: 'true'
+      - "8001"
+    labels:
+      - "monocker.enable: 'true'"
     restart: unless-stopped
 
   chibisafe_server:
@@ -20,9 +20,9 @@ services:
       - /portainer/Files/AppData/Config/chibisafe/uploads:/app/uploads:rw
       - /portainer/Files/AppData/Config/chibisafe/logs:/app/logs:rw
     expose:
-      - 8000
-  	labels:
-	  - monocker.enable: 'true'	  
+      - "8000"
+    labels:
+      - "monocker.enable: 'true'"
     restart: unless-stopped
 
   chibisafe_caddy:
@@ -32,8 +32,8 @@ services:
       - /portainer/Files/AppData/Config/chibisafe/Caddyfile/uploads:/app/uploads:ro
     ports:
       - 24424:80
-  	labels:
-	  - monocker.enable: 'true'
+    labels:
+      - "monocker.enable: 'true'"
     environment:
-      - BASE_URL=":80"
+      - "BASE_URL=:80"
     restart: unless-stopped
